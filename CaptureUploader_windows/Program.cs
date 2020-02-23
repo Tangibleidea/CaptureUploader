@@ -17,7 +17,8 @@ namespace CaptureUploader
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/drive-dotnet-quickstart.json
         static string[] Scopes = { SheetsService.Scope.Spreadsheets, DriveService.Scope.Drive };
-
+        
+        
 
         public static Google.Apis.Drive.v3.DriveService GetService_v3()
         {
@@ -25,6 +26,12 @@ namespace CaptureUploader
             String baseDir = AppDomain.CurrentDomain.BaseDirectory;
             String configPath = Path.Combine(baseDir, "credentials.json");
             //Console.WriteLine(configPath);
+
+            if(!File.Exists(configPath))
+            {
+                GoogleCredential GC = new GoogleCredential();
+                GC.GetGoogleCredential(Scopes);
+            }
 
             using (var stream = new FileStream(configPath, FileMode.Open, FileAccess.Read))
             {
