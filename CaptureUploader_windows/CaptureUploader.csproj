@@ -80,6 +80,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Resources\client_id.json" />
+    <None Include="Resources\credentials.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

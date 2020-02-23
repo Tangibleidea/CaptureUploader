@@ -22,29 +22,18 @@ namespace CaptureUploader
 
         public static Google.Apis.Drive.v3.DriveService GetService_v3()
         {
-            UserCredential credential;
-            String baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            String configPath = Path.Combine(baseDir, "credentials.json");
+            UserCredential credential = null;
+            string workingDirectory = Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+            string clientID = Path.Combine(projectDirectory, "Resources\\credentials.json");
+            //String baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            //String configPath = Path.Combine(baseDir, "credentials.json");
             //Console.WriteLine(configPath);
 
-            if(!File.Exists(configPath))
+            if (File.Exists(clientID))
             {
                 GoogleCredential GC = new GoogleCredential();
-                GC.GetGoogleCredential(Scopes);
-            }
-
-            using (var stream = new FileStream(configPath, FileMode.Open, FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal);
-                credPath = System.IO.Path.Combine(credPath, ".credentials/token.json");
-
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
+                credential = GC.GetGoogleCredential(Scopes);
             }
 
             //Create Drive API service.

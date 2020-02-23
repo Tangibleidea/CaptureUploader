@@ -20,19 +20,19 @@ namespace CaptureUploader
         private readonly BackgroundWorker worker = new BackgroundWorker();
         private static AutoResetEvent resetEvent = new AutoResetEvent(false);
         private string[] GoogleScope = null;
-        public void GetGoogleCredential(string[] _Scopes)
+        public UserCredential GetGoogleCredential(string[] _Scopes)
         {
             this.GoogleScope = _Scopes;
             worker.DoWork += Do_GettingCredentialWork;
             worker.RunWorkerCompleted += Done_GettingCredentialWork;
             worker.RunWorkerAsync();
             resetEvent.WaitOne();
+            return credential;
         }
 
+        private UserCredential credential = null;
         private void Do_GettingCredentialWork(object sender, DoWorkEventArgs e)
         {
-            UserCredential credential;
-
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
             string clientID = Path.Combine(projectDirectory, "Resources\\client_id.json");
@@ -42,7 +42,7 @@ namespace CaptureUploader
             {
                 string credPath = System.Environment.GetFolderPath(
                     System.Environment.SpecialFolder.Personal);
-                credPath = System.IO.Path.Combine(credPath, ".credentials/credentials.json");
+                credPath = System.IO.Path.Combine(credPath, ".credentials/token.json");
 
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
