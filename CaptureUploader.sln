@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureUploader_multiplatform", "CaptureUploader_multiplatform\CaptureUploader_multiplatform.csproj", "{8F305C41-186D-41C4-BDEE-41C56DB4BFF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureUploader", "CaptureUploader_windows\CaptureUploader.csproj", "{6EC46D93-C09E-4575-82B2-7D5DED3501C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F305C41-186D-41C4-BDEE-41C56DB4BFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F305C41-186D-41C4-BDEE-41C56DB4BFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F305C41-186D-41C4-BDEE-41C56DB4BFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F305C41-186D-41C4-BDEE-41C56DB4BFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC46D93-C09E-4575-82B2-7D5DED3501C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC46D93-C09E-4575-82B2-7D5DED3501C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC46D93-C09E-4575-82B2-7D5DED3501C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC46D93-C09E-4575-82B2-7D5DED3501C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
