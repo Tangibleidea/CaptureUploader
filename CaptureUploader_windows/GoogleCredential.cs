@@ -35,7 +35,7 @@ namespace CaptureUploader
         {
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
-            string clientID = Path.Combine(projectDirectory, "Resources\\client_id.json");
+            string clientID = Path.Combine(projectDirectory, "Resources\\credentials.json");
 
             using (var stream =
                 new FileStream(clientID, FileMode.Open, FileAccess.Read))
@@ -59,6 +59,7 @@ namespace CaptureUploader
         {
             worker.DoWork -= Do_GettingCredentialWork;
             worker.RunWorkerCompleted -= Done_GettingCredentialWork;
+            resetEvent.Set();
         }
     }
 }

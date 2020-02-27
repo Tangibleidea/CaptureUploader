@@ -17,24 +17,24 @@ namespace CaptureUploader
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/drive-dotnet-quickstart.json
         static string[] Scopes = { SheetsService.Scope.Spreadsheets, DriveService.Scope.Drive };
-        
-        
 
+
+        static UserCredential credential = null;
         public static Google.Apis.Drive.v3.DriveService GetService_v3()
         {
-            UserCredential credential = null;
-            string workingDirectory = Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
-            string clientID = Path.Combine(projectDirectory, "Resources\\credentials.json");
-            //String baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            //String configPath = Path.Combine(baseDir, "credentials.json");
-            //Console.WriteLine(configPath);
-
-            if (File.Exists(clientID))
+            if(credential == null)
             {
+                string workingDirectory = Environment.CurrentDirectory;
+                string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+                string clientID = Path.Combine(projectDirectory, "Resources\\credentials.json");
+
+                string credPath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                credPath = System.IO.Path.Combine(credPath, ".credentials/token.json");
+
                 GoogleCredential GC = new GoogleCredential();
                 credential = GC.GetGoogleCredential(Scopes);
             }
+            
 
             //Create Drive API service.
             Google.Apis.Drive.v3.DriveService service = new Google.Apis.Drive.v3.DriveService(new BaseClientService.Initializer()
@@ -214,6 +214,7 @@ namespace CaptureUploader
             }
             else
             {
+                //throw new ArgumentException("Please input the target image path as an argument.");
                 arg1 = "sample.png";
             }
 

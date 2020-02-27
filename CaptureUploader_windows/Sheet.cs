@@ -38,11 +38,12 @@ namespace CaptureUploader
             //    return;
 
             UserCredential credential;
-            String baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            String configPath = Path.Combine(baseDir, "credentials.json");
+            string workingDirectory = Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+            string clientID = Path.Combine(projectDirectory, "Resources\\credentials.json");
 
             using (var stream =
-                new FileStream(configPath, FileMode.Open, FileAccess.Read))
+                new FileStream(clientID, FileMode.Open, FileAccess.Read))
             {
                 string credPath = System.Environment.GetFolderPath(
                     System.Environment.SpecialFolder.Personal);
