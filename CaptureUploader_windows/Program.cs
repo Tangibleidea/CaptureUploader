@@ -214,8 +214,10 @@ namespace CaptureUploader
             }
             else
             {
+                Console.WriteLine("Please input the target image path as an argument: ");
+                arg1= Console.ReadLine();
                 //throw new ArgumentException("Please input the target image path as an argument.");
-                arg1 = "sample.png";
+                //arg1 = "sample.png";
             }
 
             String uploadedFileURL = AccessGoogleDrive(arg1);
