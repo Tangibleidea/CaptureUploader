@@ -24,13 +24,24 @@ namespace CaptureUploader
         {
             if(credential == null)
             {
-                string workingDirectory = Environment.CurrentDirectory;
+                string workingDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
                 string clientID = Path.Combine(projectDirectory, "Resources\\credentials.json");
 
+                Console.WriteLine("projectDirectory : " + clientID);
+                if (!File.Exists(clientID))
+                {
+                    Console.WriteLine("credentials exists");
+                }
+                else
+                {
+                    Console.WriteLine("credentials does not exist");
+                }
+
+
                 string credPath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 credPath = System.IO.Path.Combine(credPath, ".credentials/token.json");
-
+                
                 GoogleCredential GC = new GoogleCredential();
                 credential = GC.GetGoogleCredential(Scopes);
             }
@@ -66,6 +77,8 @@ namespace CaptureUploader
 
                 if (parentID != null)
                     Query += " and '" + parentID + "' in parents";
+
+                Console.WriteLine("Q: " + Query);
 
                 request.Q = Query;
                 request.Spaces = "drive";
@@ -219,6 +232,7 @@ namespace CaptureUploader
                 //throw new ArgumentException("Please input the target image path as an argument.");
                 //arg1 = "sample.png";
             }
+            Console.WriteLine("Arg: " + arg1);
 
             String uploadedFileURL = AccessGoogleDrive(arg1);
 
