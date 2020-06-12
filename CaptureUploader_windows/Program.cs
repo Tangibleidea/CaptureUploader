@@ -5,8 +5,10 @@ using Google.Apis.Sheets.v4;
 using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Automation; 
 
 namespace CaptureUploader
@@ -216,9 +218,27 @@ namespace CaptureUploader
             return "https://drive.google.com/open?id=" + file.Id.ToString();
         }
 
+
         static void Main(string[] args)
         {
-            var currURL= Chrome.GetCurrentChromeURL();
+            var currURL = string.Empty;
+            var task = Task.Run(() =>
+            {
+                return Chrome.GetCurrentChromeURL();
+            });
+
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(5000));
+            if (isCompletedSuccessfully)
+            {
+                currURL= task.Result;
+            }
+            else
+            {
+                //throw new TimeoutException("The function has taken longer than the maximum time allowed.");
+                Console.WriteLine("The function has taken longer than the maximum time allowed.");
+                return;
+            }
+            //var currURL= Chrome.GetCurrentChromeURL();
 
             string arg1 = String.Empty;
             if (args.Length == 1)

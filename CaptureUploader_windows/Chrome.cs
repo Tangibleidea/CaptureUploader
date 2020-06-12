@@ -128,6 +128,7 @@ namespace CaptureUploader
             // there are always multiple chrome processes, so we have to loop through all of them to find the
             // process with a Window Handle and an automation element of name "Address and search bar"
             Process[] procsChrome = Process.GetProcessesByName("chrome");
+            Console.WriteLine("Waiting for answer from Chrome browser...");
             foreach (Process chrome in procsChrome)
             {
                 // the chrome process must have a window
