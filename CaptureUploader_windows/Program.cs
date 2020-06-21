@@ -236,7 +236,6 @@ namespace CaptureUploader
             {
                 //throw new TimeoutException("The function has taken longer than the maximum time allowed.");
                 Console.WriteLine("The function has taken longer than the maximum time allowed.");
-                return;
             }
             //var currURL= Chrome.GetCurrentChromeURL();
 
