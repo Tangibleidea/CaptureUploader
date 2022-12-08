@@ -10,7 +10,7 @@
     <PackageReference Include="Google.Apis.Auth" Version="1.43.0" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.43.0.1835" />
     <PackageReference Include="Google.Apis.Sheets.v4" Version="1.43.0.1848" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Google.Apis" Version="1.43.0" />
   </ItemGroup>
 </Project>
